@@ -26,6 +26,10 @@ Route::get('detail', function () {
     return view('detail');
 })->name('detail');
 
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
+
 
 Route::get('new', function () {
     return view('new');
@@ -50,10 +54,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('reg',function (){
-	return view('auth.register'); 
-})->name('register'); 
+// Route::get('reg',function (){
+// 	return view('auth.register'); 
+// })->name('register'); 
 
-Route::post('reg','RegController@post_reg')->name('post_register'); 
+// Route::post('reg','RegController@post_reg')->name('post_register'); 
 
 Route::get('test_create','IdektiaController@create')->name('create');

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Login / Register Form</title>
+        <title>Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Credit Login / Register Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
@@ -25,24 +25,34 @@
     <!--form-stars-here-->
             <div class="form-w3-agile">
                 <h2>Login</h2>
-                <form action="#" method="post">
-                    {{csrf_field()}}
-                    <div class="form-sub-w3">
-                        <input type="text" name="Username" placeholder="Email or username " required="" />
-                    <div class="icon-w3">
-                        <i class="fa fa-user" aria-hidden="true"></i>
+                <form action="{{route('login')}}" method="POST" id="sign_in" >
+                       {!! csrf_field() !!}
+                    <div class="form-sub-w3{{ $errors->has('username') ? ' is-invalid' : '' }}">
+                        <input id="username" type="text" name="username" class="form-control" value="{{ old('username') }}"  placeholder="Username " required autofocus>
+                       
+                     @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                        @endif
                     </div>
-                    </div>
-                    <div class="form-sub-w3">
-                        <input type="password" name="Password" placeholder="Password" required="" />
-                    <div class="icon-w3">
-                        <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                    </div>
-                    </div>
-                    <p class="p-bottom-w3ls">Haven't already an account?<a class="w3_play_icon1" href="#small-dialog1">  Sign Up here</a></p>
+                    <div class="form-sub-w3{{ $errors->has('password') ? ' is-invalid' : '' }}">
+                        <input id="password" type="password" placeholder="Password" class="form-control" name="password" required>
                     
+                     @if ($errors->has('password'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                        @endif
+                    </div>
+                    <p class="p-bottom-w3ls">Haven't already an account?<a href="{{route('register')}}">  Sign Up here</a>
+                        <br><br>
+                    <a href="{{ route('password.request') }}">
+                                    {{ __('Forgot Your Password?') }}
+                    </a>
+                    </p>
                     <div class="submit-w3l">
-                        <input type="submit" value="Login">
+                        <input type="submit">
                     </div>
                 </form>
             </div>
