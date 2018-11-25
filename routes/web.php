@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('idea');
-});
+})->name('idea');
 
 Route::get('index', function () {
     return view('index');
@@ -26,14 +26,20 @@ Route::get('detail', function () {
     return view('detail');
 })->name('detail');
 
-Route::get('/profile', function () {
+Route::get('profile', function () {
     return view('profile');
 })->name('profile');
 
 
-Route::get('new', function () {
-    return view('new');
-})->name('new');
+
+Route::group(['middleware' => ['auth']], function() {
+     // uses 'auth' middleware
+    Route::get('new', function () {
+    	return view('new');
+	})->name('new');
+});
+
+
 
 
 Route::get('tambahpost', function () {
@@ -61,3 +67,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::post('reg','RegController@post_reg')->name('post_register'); 
 
 Route::get('test_create','IdektiaController@create')->name('create');
+
+

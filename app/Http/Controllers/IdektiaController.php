@@ -34,6 +34,8 @@ class IdektiaController extends Controller
     	return redirect('/');
     }
 
+
+
 }
 
 

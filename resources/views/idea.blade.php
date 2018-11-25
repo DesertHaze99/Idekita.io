@@ -58,9 +58,9 @@
           <?php if (!empty(Auth::user()->username)) { ?>
             <li class="menu-has-children"><a href="">Profile</a>
             <ul>
-                <li>  {{ Auth::user()->username }} </li>
+                <li>  </li>
               
-              <li><a href="">Profile</a></li>
+              <li><a href="{!! url('/profile'); !!}">Profile</a></li>
               <li><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">

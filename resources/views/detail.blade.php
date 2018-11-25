@@ -29,7 +29,7 @@
 							<li><a href="blog.html">Blog</a></li>
 							<li>How to Get Started in Photography</li>
 						</ul>
-						<h1 class="white-text">How to Get Started in Photography</h1>
+						<h1 class="white-text">Auth::user()->posts->title</h1>
 						<ul class="blog-post-meta">
 							<li class="blog-meta-author">By : <a href="#">John Doe</a></li>
 							<li>18 Oct, 2017</li>

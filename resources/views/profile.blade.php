@@ -40,32 +40,7 @@
   <!--==========================
     Header
   ============================-->
-  <header id="header" >
-    <div class="container-fluid">
-
-      <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Idekita</a></h1>
-      </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Jendela Ide</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="menu-has-children"><a href="">Profile</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
-  </header><!-- #header -->
+  
 
   <!--==========================
     Intro Section
@@ -81,8 +56,16 @@
 
         <header class="section-header">
           <h3>Profil Saya</h3>
-         
+          <center>
+            <img src="{{url('/')}}/Auth::user()->profil_picture" style="height: 50px; width: 50px;">
+            
+          </center>
         </header>
+
+        <br>
+        <br>
+        <br>
+
 
         <div class="row about-cols">
 
@@ -91,16 +74,19 @@
           <div class="col-md-12 wow fadeInUp" data-wow-delay="0.1s">
           </body>
             <div class="about-col">
+
               <div class="img">
                 <img src="{{url('/')}}/template/img/" alt="" class="img-fluid">
                 <div class="icon">
                   <i class="fas fa-user"></i>
                   
                 </div>
+
+
               </div>
-              <h2 class="title"><a href="#">Michael Smith</a></h2>
+              <h2 class="title"><a href="#">{{ Auth::user()->username }} </a></h2>
               <h5><center>
-                Key Account Manager  
+                {{ Auth::user()->email}}   
                <div class="col-md-12 grid-margin stretch-card">
               <!-- <div class="card"> -->
                 <div class="card-body">

@@ -22,13 +22,29 @@
     <br>
     <h1></h1>
 
-    <div class="main-agileits">
-        <div class="contact-form1">
+    <div class="main-agileits" >
+        <div class="contact-form1"style="background-color: white;">
             <div class="contact-w3-agileits">
             <h3>Sign Up</h3>
                 <form method="POST" action="{{ route('register') }}">
                         @csrf
+                    <div class="col-sm-4 text-center form-sub-w3ls{{ $errors->has('profil_picture') ? ' is-invalid' : '' }}">
+                        <div class="kv-avatar">
+                            <h4>Upload your profile picture here :</h4>
+                            <div class="file-loading">
+                                <input id="avatar-1" name="profil_picture" type="file" required>
+                            </div>
+                        </div>
+                        @if ($errors->has('profil_picture'))
+                            <span class="invalid-feedback" role="alert">
+                                strong>{{ $errors->first('profil_picture') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+
                     <div class="form-sub-w3ls{{ $errors->has('first_name') ? ' is-invalid' : '' }}">
+
                         <input placeholder="Full Name"  type="text" id="first_name" class="form-control" name="first_name"  required autofocus>
                         @if ($errors->has('first_name'))
                                     <span class="invalid-feedback" role="alert">

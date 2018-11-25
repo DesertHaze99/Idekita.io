@@ -48,18 +48,32 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#home">Home</a></li>
+          <li class="menu-active"><a href="{{Route('idea')}}">Home</a></li>
           <li><a href="#about">About Us</a></li>
           <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Jendela Ide</a></li>
           <li><a href="#contact">Contact</a></li>
-          <li class="menu-has-children"><a href="">Profile</a>
+                    <?php if (!empty(Auth::user()->username)) { ?>
+            <li class="menu-has-children"><a href="">Profile</a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+                <li>  </li>
+              
+              <li><a href="{!! url('/profile'); !!}">Profile</a></li>
+              <li><a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                      {{ __('Logout') }}
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                  </form>
+              </li>
             </ul>
+            <?php
+              } else { ?>
+                <li><a href="{{Route('login')}}">Login</a></li>
+              <?php } ?>
           </li>
         </ul>
       </nav><!-- #nav-menu-container -->
