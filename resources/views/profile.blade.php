@@ -60,6 +60,7 @@
 
             <img src="data:image/jpg;base64,'.base64_encode(Auth::user()->profil_picture).'" style="height: 50px; width: 50px;">
           </center>
+          <?php var_dump(Auth::user()->profil_picture);  ?>
         </header>
 
         <br>

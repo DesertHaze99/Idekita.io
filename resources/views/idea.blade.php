@@ -56,7 +56,7 @@
           <li><a href="#contact">Contact</a></li>
 
           <?php if (!empty(Auth::user()->username)) { ?>
-            <li class="menu-has-children"><a href="">Profile</a>
+            <li class="menu-has-children"><a href="#" style="pointer-events: none;cursor: default;">Profile</a>
             <ul>
                 <li>  </li>
               
@@ -266,22 +266,26 @@
         </div>
 
         <div class="row portfolio-container">
+          <?php 
+              $posts= DB::select('SELECT * FROM posts ');;
 
+          ?>
+        @foreach($posts as $data)
           <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
             <div class="portfolio-wrap">
               <figure>
                 <img src="{{url('/')}}/template/img/portfolio/app1.jpg" class="img-fluid" alt="">
                 <a href="{{url('/')}}/template/img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="{{Route('detail')}}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                <a href="{{Route('detail',$data->post_id)}}"  class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">
-                <h4><a href="#">App 1</a></h4>
-                <p>App</p>
+                <h4><a href="{{Route('detail', 'id='.$data->post_id)}} ">{{$data->title}}</a></h4>
+
               </div>
             </div>
           </div>
-
+        @endforeach
           <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
               <figure>

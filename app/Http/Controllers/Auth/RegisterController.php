@@ -46,6 +46,9 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
+
+    
+
          return redirect('/login');
     }
 
@@ -84,5 +87,46 @@ class RegisterController extends Controller
             'profil_picture' => $data['profil_picture'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+     public function store(CreateBannerRequest $request)
+    {
+
+        $input = $request->all();
+        //get original file name
+        if($request->photo == NULL)
+        {
+            Flash::error('Image must be filled');
+            return back();
+        }
+        $filename = Input::file('profil_picture')->getClientOriginalName();
+        $input['profil_picture'] =  $filename;
+         $banner = $this->BannerRepository->create($input);
+        //upload file
+        Input::file('profil_picture')->move($this->path, $filename); 
+
+         Flash::success('Banner saved successfully.');
+
+         if (empty($banner)) {
+            Flash::error('No image available');
+
+            return redirect(route('banner.index'));
+        }
+
+         return redirect(route('banner.index'));
+    }
+
+
+    public function uploadPhoto(Request $request)
+    {
+        $this->validate($request, [
+            'profil_picture' => 'mimes:jpg |max:4096',
+        ],
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'mimes' => 'Only jpeg, png, bmp,tiff are allowed.'
+            ]
+        );
+     // Now save your file to the storage and file details at database.
     }
 }

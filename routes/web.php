@@ -22,13 +22,15 @@ Route::get('index', function () {
 
 Route::get('mainan','IdektiaController@mainan');
 
-Route::get('detail', function () {
-    return view('detail');
-})->name('detail');
+//Route::get('detail/{post_id}','detailcontroller@detail')->name('detail');
 
 Route::get('profile', function () {
-    return view('profile');
+    return view('profile') ;
 })->name('profile');
+
+Route::get('detail', function () {
+    return view('detail') ;
+})->name('detail');
 
 
 
@@ -67,4 +69,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Route::post('reg','RegController@post_reg')->name('post_register'); 
 
 Route::get('test_create','IdektiaController@create')->name('create');
+
+
+Route::post('upload/profil_picture','IdektiaController@uploadPhoto');
 

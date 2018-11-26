@@ -29,20 +29,26 @@
 							<li><a href="blog.html">Blog</a></li>
 							<li>How to Get Started in Photography</li>
 						</ul>
+
+						
 						<?php 
-							$posts= DB::select('SELECT * FROM posts WHERE user_id = 0');;
+							$posts= DB::select('SELECT * FROM posts ');
 
 						 ?>
-
-						@foreach ($posts as $object)
-						    <h1 class="white-text">{{$object->title}}</h1>
-						
+						 @foreach ($posts as $object)
+						 	<?php 
+						 		$id = $_GET['id'];
+								if ($object->post_id == $id ) { ?>
+								<h1 class="white-text">{{$object->title}}</h1>
+							<?php
+							} ?>
+						    
+						@endforeach
 						<ul class="blog-post-meta">
-							<li class="blog-meta-author">By : <a href="#">{{$object->user_id}}</a></li>
+							<li class="blog-meta-author">By : <a href="#">John Doe</a></li>
 							<li>18 Oct, 2017</li>
 							<li class="blog-meta-comments"><a href="#"><i class="fa fa-comments"></i> 35</a></li>
 						</ul>
-						@endforeach
 					</div>
 				</div>
 			</div>
@@ -64,15 +70,16 @@
 
 						<!-- blog post -->
 						<div class="blog-post">
-							<p>An aeterno percipit per. His minim maiestatis consetetur et, brute tantas iracundia id sea. Vim tota nostrum reformidans te. Nam ad appareat mediocritatem, mediocrem similique usu ex, scaevola invidunt eu sed.</p>
-							<p>Reque admodum praesent ei nec. Ad eius phaedrum conclusionemque cum, pri cu suas essent saperet. No vero ludus habemus qui. Per ex errem torquatos, eam in tale sumo mentitum. Cum nulla viderer no. Pri id antiopam volutpat evertitur, in vidit interpretaris nec.</p>
-							<p>Te option apeirian corrumpit nec, has et tollit minimum molestie. Nam et justo everti, tale repudiandae cu nec. Aliquip legendos evertitur ne sit, mazim sadipscing sea ei. Sea no facete probatus vulputate, ex pri reque tempor. Odio adolescens ius te, docendi suscipit indoctum at qui.</p>
-							<blockquote>
-							  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-							</blockquote>
-							<p>An aeterno percipit per. His minim maiestatis consetetur et, brute tantas iracundia id sea. Vim tota nostrum reformidans te. Nam ad appareat mediocritatem, mediocrem similique usu ex, scaevola invidunt eu sed.</p>
-							<p>Reque admodum praesent ei nec. Ad eius phaedrum conclusionemque cum, pri cu suas essent saperet. No vero ludus habemus qui. Per ex errem torquatos, eam in tale sumo mentitum. Cum nulla viderer no. Pri id antiopam volutpat evertitur, in vidit interpretaris nec.</p>
-							<p>Te option apeirian corrumpit nec, has et tollit minimum molestie. Nam et justo everti, tale repudiandae cu nec. Aliquip legendos evertitur ne sit, mazim sadipscing sea ei. Sea no facete probatus vulputate, ex pri reque tempor. Odio adolescens ius te, docendi suscipit indoctum at qui.</p>
+							@foreach ($posts as $object)
+								<?php 
+							 		$id = $_GET['id'];
+									if ($object->post_id == $id ) { ?>
+										<div class="container-fluid" >
+											<p style="text-align: justify; text-indent: 5%;">{{$object->content}} </p>
+										</div>
+								<?php
+							} ?>
+							@endforeach
 						</div>
 						<!-- /blog post -->
 
@@ -91,18 +98,20 @@
 							<!-- /single comment -->
 
 							<!-- single comment -->
+
+       						@foreach($posts as $data)
 							<div class="media">
 								<div class="media-left">
 									<img src="./img/avatar.png" alt="">
 								</div>
 								<div class="media-body">
-									<h4 class="media-heading">John Doe</h4>
-									<p>Cu his iudico appareat ullamcorper, at mea ignota nostrum. Nonumy argumentum id cum, eos adversarium contentiones id</p>
+									<h4 class="media-heading">{{$data->user_id}}</h4>
+									<p>{{$data->content}}</p>
 									<div class="date-reply"><span>Oct 18, 2017 - 4:00AM</span><a href="#" class="reply">Reply</a></div>
 								</div>
 							</div>
 							<!-- /single comment -->
-
+							@endforeach
 							<!-- blog reply form -->
 							<div class="blog-reply-form">
 								<h3>Leave Comment</h3>

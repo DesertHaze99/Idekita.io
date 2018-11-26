@@ -31,9 +31,12 @@
                     <div class="col-sm-4 text-center form-sub-w3ls{{ $errors->has('profil_picture') ? ' is-invalid' : '' }}">
                         <div class="kv-avatar">
                             <h4>Upload your profile picture here :</h4>
-                            <div class="file-loading">
-                                <input id="avatar-1" name="profil_picture" type="file" required>
-                            </div>
+
+                            
+                                <div class="file-loading">
+                                    <input id="avatar-1" name="profil_picture" type="file" accept = 'image/jpg' required>
+                                </div>
+                        
                         </div>
 
 

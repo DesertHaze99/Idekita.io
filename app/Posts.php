@@ -19,4 +19,9 @@ class Posts extends Model
 		'category', 
 		'title'
     ];
+
+    public function post()
+    {
+        return $this->hasMany(\App\Posts::class,'post_id','post_id');
+    }
 }

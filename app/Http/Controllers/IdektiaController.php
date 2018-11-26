@@ -32,7 +32,7 @@ class IdektiaController extends Controller
     {
     	// dd($request->first_name);
     	// query insert dengan eloquent
-    	$c = new Post();
+    	$c = new Posts();
 		$c->title = $request->title;
 		$c->category = $request->category;
 		$c->content = $request->content;
@@ -40,6 +40,29 @@ class IdektiaController extends Controller
     	return redirect('/');
     }
 
+    public function uploadPhoto(Request $request)
+    {
+        $this->validate($request, [
+            'profil_picture' => 'mimes:jpg |max:4096',
+        ],
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'mimes' => 'Only jpeg, png, bmp,tiff are allowed.'
+            ]
+        );
+     // Now save your file to the storage and file details at database.
+    }
+
+
+    public function join_post_to_comment()
+    {
+        //join pertama
+        $post = Posts::join('posts','posts.post_id','=','comment.post_id')
+        ->where('posts.post_id',1)
+        ->get();
+        dd($post);
+        //join ke dua, di set dulu function customer() pada model class Store 
+    }
 
 
 }
