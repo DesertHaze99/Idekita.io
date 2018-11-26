@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
-use App\Post;
+use App\Posts;
 
 
 class IdektiaController extends Controller
@@ -12,11 +12,17 @@ class IdektiaController extends Controller
     	return view('layouts.main');
     }
 
-     function post(){
+    function posts(){
+        $data['posts'] = DB::table('posts')->get();
+
+        return view('posts', $data);
+    }
+
+     function Post(){
     	//$data['customer'] = Customer::limit(10)->get();
     	//$data['customer-X'] = Customer::where('customer_id',10)->first();
     	//$data['customer'] = Customer::all()->where('deleted', false);
-        $data['posts'] = Post::all();
+        $data['posts'] = Posts::all();
         //dd($data['customer']);
 
     	return view('/', $data);

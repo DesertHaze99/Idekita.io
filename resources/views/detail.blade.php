@@ -29,12 +29,20 @@
 							<li><a href="blog.html">Blog</a></li>
 							<li>How to Get Started in Photography</li>
 						</ul>
-						<h1 class="white-text">Auth::user()->posts->title</h1>
+						<?php 
+							$posts= DB::select('SELECT * FROM posts WHERE user_id = 0');;
+
+						 ?>
+
+						@foreach ($posts as $object)
+						    <h1 class="white-text">{{$object->title}}</h1>
+						
 						<ul class="blog-post-meta">
-							<li class="blog-meta-author">By : <a href="#">John Doe</a></li>
+							<li class="blog-meta-author">By : <a href="#">{{$object->user_id}}</a></li>
 							<li>18 Oct, 2017</li>
 							<li class="blog-meta-comments"><a href="#"><i class="fa fa-comments"></i> 35</a></li>
 						</ul>
+						@endforeach
 					</div>
 				</div>
 			</div>

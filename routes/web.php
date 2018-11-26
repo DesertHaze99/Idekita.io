@@ -68,4 +68,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('test_create','IdektiaController@create')->name('create');
 
-

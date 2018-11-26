@@ -57,8 +57,8 @@
         <header class="section-header">
           <h3>Profil Saya</h3>
           <center>
-            <img src="{{url('/')}}/Auth::user()->profil_picture" style="height: 50px; width: 50px;">
-            
+
+            <img src="data:image/jpg;base64,'.base64_encode(Auth::user()->profil_picture).'" style="height: 50px; width: 50px;">
           </center>
         </header>
 

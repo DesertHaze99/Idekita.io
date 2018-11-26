@@ -35,6 +35,8 @@
                                 <input id="avatar-1" name="profil_picture" type="file" required>
                             </div>
                         </div>
+
+
                         @if ($errors->has('profil_picture'))
                             <span class="invalid-feedback" role="alert">
                                 strong>{{ $errors->first('profil_picture') }}</strong>
@@ -127,5 +129,9 @@
                                                                             
             });
         </script>
+
+
+
+
     </body>
 </html>
