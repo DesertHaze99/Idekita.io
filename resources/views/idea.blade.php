@@ -258,16 +258,16 @@
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-app">Teknologi</li>
+              <li data-filter=".filter-card">Bussiness</li>
+              <li data-filter=".filter-web">Kesehatan</li>
             </ul>
           </div>
         </div>
 
         <div class="row portfolio-container">
           <?php 
-              $posts= DB::select('SELECT * FROM posts ');;
+              $posts= DB::select('SELECT * FROM posts');;
 
           ?>
         @foreach($posts as $data)
@@ -276,7 +276,7 @@
               <figure>
                 <img src="{{url('/')}}/template/img/portfolio/app1.jpg" class="img-fluid" alt="">
                 <a href="{{url('/')}}/template/img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="{{Route('detail',$data->post_id)}}"  class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                <a href="{{Route('detail', 'id='.$data->post_id)}}"  class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
               </figure>
 
               <div class="portfolio-info">

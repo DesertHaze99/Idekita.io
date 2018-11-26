@@ -75,7 +75,7 @@
 							 		$id = $_GET['id'];
 									if ($object->post_id == $id ) { ?>
 										<div class="container-fluid" >
-											<p style="text-align: justify; text-indent: 5%;">{{$object->content}} </p>
+											<p style="text-align: justify; text-indent: 5%;">{{$object->content_post}} </p>
 										</div>
 								<?php
 							} ?>
@@ -99,20 +99,39 @@
 
 							<!-- single comment -->
 
-       						@foreach($posts as $data)
-							<div class="media">
-								<div class="media-left">
-									<img src="./img/avatar.png" alt="">
-								</div>
-								<div class="media-body">
-									<h4 class="media-heading">{{$data->user_id}}</h4>
-									<p>{{$data->content}}</p>
-									<div class="date-reply"><span>Oct 18, 2017 - 4:00AM</span><a href="#" class="reply">Reply</a></div>
-								</div>
-							</div>
+							<?php 
+								$comment= DB::select('SELECT * FROM comment');
+								$name_comment= DB::select('SELECT * FROM users');
+
+						 	?>
+       						@foreach($comment as $data )
+       							@foreach($name_comment as $name_comment_data)
+       							<?php 
+							 		$id = $_GET['id'];
+									if ($data->post_id == $id) {
+										if ($name_comment_data->users_id == $data->user_id) {
+									 ?>
+										<div class="media">
+											<div class="media-left">
+												<img src="./img/avatar.png" alt="">
+											</div>
+											<div class="media-body">
+										 		
+													<h4 class="media-heading">{{$name_comment_data->username}}</h4>
+													<p>{{$data->content_comment}}</p>
+													<div class="date-reply"><span>Oct 18, 2017 - 4:00AM</span><a href="#" class="reply">Reply</a></div>
+												
+											</div>
+										</div>
 							<!-- /single comment -->
+								<?php } 
+
+							}?>
+								@endforeach
 							@endforeach
 							<!-- blog reply form -->
+
+							
 							<div class="blog-reply-form">
 								<h3>Leave Comment</h3>
 								<form>

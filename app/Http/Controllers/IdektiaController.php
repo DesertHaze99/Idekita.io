@@ -35,7 +35,7 @@ class IdektiaController extends Controller
     	$c = new Posts();
 		$c->title = $request->title;
 		$c->category = $request->category;
-		$c->content = $request->content;
+		$c->content_post = $request->content_post;
 		$c->save();
     	return redirect('/');
     }
@@ -54,13 +54,12 @@ class IdektiaController extends Controller
     }
 
 
-    public function join_post_to_comment()
+    public function join_posts_to_comment()
     {
         //join pertama
-        $post = Posts::join('posts','posts.post_id','=','comment.post_id')
-        ->where('posts.post_id',1)
+        $posts = Posts::join('comment','posts.post_id','=','comment.post_id')
         ->get();
-        dd($post);
+        dd($posts);
         //join ke dua, di set dulu function customer() pada model class Store 
     }
 
